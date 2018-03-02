@@ -1,20 +1,25 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://JungleDirtTileset.tres" type="TileSet" id=2]
-[ext_resource path="res://WorldComplete.tscn" type="PackedScene" id=3]
+[ext_resource path="res://WorldComplete.tscn" type="PackedScene" id=2]
+[ext_resource path="res://DirtAutoTile.tres" type="TileSet" id=3]
 
-[node name="World" type="Node"]
+[node name="World" type="Node" index="0"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 192, 192 )
+position = Vector2( 64, 160 )
 
-[node name="TileMap" type="TileMap" parent="." index="1"]
+[node name="WorldComplete" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 576, 32 )
+next_world = "res://World2.tscn"
+
+[node name="TileMap" type="TileMap" parent="." index="2"]
 
 mode = 0
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 32, 32 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 cell_half_offset = 2
@@ -28,15 +33,10 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 262157, 0, 0, 262158, 1, 0, 262159, 2, 0, 327693, 3, 0, 327694, 4, 0, 327695, 5, 0, 393229, 3, 0, 393230, 4, 0, 393231, 5, 0, 458756, 0, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 458768, 2, 0, 524292, 3, 0, 524293, 4, 0, 524294, 4, 0, 524295, 4, 0, 524296, 4, 0, 524297, 4, 0, 524298, 4, 0, 524299, 4, 0, 524300, 4, 0, 524301, 4, 0, 524302, 4, 0, 524303, 4, 0, 524304, 5, 0, 589828, 6, 0, 589829, 7, 0, 589830, 7, 0, 589831, 7, 0, 589832, 7, 0, 589833, 7, 0, 589834, 7, 0, 589835, 7, 0, 589836, 7, 0, 589837, 7, 0, 589838, 7, 0, 589839, 7, 0, 589840, 8, 0 )
-_sections_unfolded = [ "Cell" ]
+tile_data = PoolIntArray( 65544, 0, 1, 65545, 0, 2, 131077, 0, 5, 131079, 0, 6, 131080, 0, 65544, 131081, 0, 65545, 196608, 0, 1, 196609, 0, 65536, 196610, 0, 2, 196613, 0, 131077, 196615, 0, 131077, 196617, 0, 65541, 262144, 0, 131073, 262145, 0, 196619, 262146, 0, 65539, 262147, 0, 2, 262153, 0, 65541, 327680, 0, 65537, 327681, 0, 131072, 327682, 0, 131072, 327683, 0, 65547, 327684, 0, 196609, 327685, 0, 196609, 327686, 0, 196609, 327687, 0, 196609, 327688, 0, 196609, 327689, 0, 65543 )
+_sections_unfolded = [ "Collision" ]
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="WorldComplete" parent="." index="2" instance=ExtResource( 3 )]
-
-position = Vector2( 480, 96 )
-next_world = "res://World2.tscn"
 
 
