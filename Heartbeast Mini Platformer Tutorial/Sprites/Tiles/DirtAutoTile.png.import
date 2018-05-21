@@ -7,10 +7,7 @@ path="res://.import/DirtAutoTile.png-37fd3fa35dbe398a629f83eb69626ffa.stex"
 [deps]
 
 source_file="res://Sprites/Tiles/DirtAutoTile.png"
-source_md5="375e8c04bacf24f5314a1751a2dc3f29"
-
 dest_files=[ "res://.import/DirtAutoTile.png-37fd3fa35dbe398a629f83eb69626ffa.stex" ]
-dest_md5="c5c9c36d576c2ee87ff546790e488a06"
 
 [params]
 
