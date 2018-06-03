@@ -11,8 +11,12 @@ config_version=3
 [application]
 
 config/name="Multiplayer Space Shooter"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Lobby.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+ConnectionManager="*res://ConnectionManager.gd"
 
 [rendering]
 
