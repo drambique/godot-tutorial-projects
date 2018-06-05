@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Walls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ramp.tscn" type="PackedScene" id=3]
+
+[node name="Level" type="Spatial" index="0"]
+
+[node name="Floor" parent="." index="0" instance=ExtResource( 1 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+
+[node name="Walls" parent="." index="1" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.45713, 1, 0 )
+
+[node name="Walls3" parent="." index="2" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.54287, 1, 0 )
+
+[node name="Walls2" parent="." index="3" instance=ExtResource( 2 )]
+
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0.0428734, 1, 9.5 )
+
+[node name="Walls4" parent="." index="4" instance=ExtResource( 2 )]
+
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0.0428734, 1, -9.5 )
+
+[node name="EndPlatform" parent="." index="5" instance=ExtResource( 1 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 4.5, 0 )
+
+[node name="Ramp" parent="." index="6" instance=ExtResource( 3 )]
+
+transform = Transform( -3.9616e-008, -0.422618, -0.906308, -1.84732e-008, 0.906308, -0.422618, 1, 0, -4.37114e-008, 8, 4, 0 )
+
+
