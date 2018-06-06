@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Walls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ramp.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player.gd" type="Script" id=5]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GoalPiece.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Box.tscn" type="PackedScene" id=8]
+
+[node name="Main" type="Spatial" index="0"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="Floor" parent="." index="0" instance=ExtResource( 1 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+
+[node name="Walls" parent="." index="1" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.45713, 1, 0 )
+
+[node name="Walls3" parent="." index="2" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.54287, 1, 0 )
+
+[node name="Walls2" parent="." index="3" instance=ExtResource( 2 )]
+
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0.0428734, 1, 9.5 )
+
+[node name="Walls4" parent="." index="4" instance=ExtResource( 2 )]
+
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0.0428734, 1, -9.5 )
+
+[node name="EndPlatform" parent="." index="5" instance=ExtResource( 1 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 4.5, 0 )
+
+[node name="Ramp" parent="." index="6" instance=ExtResource( 3 )]
+
+transform = Transform( -3.9616e-008, -0.422618, -0.906308, -1.84732e-008, 0.906308, -0.422618, 1, 0, -4.37114e-008, 8, 4, 0 )
+
+[node name="Player" parent="." index="7" instance=ExtResource( 4 )]
+
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -5.5, 1.5, -2 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Ball" parent="." index="8" instance=ExtResource( 6 )]
+
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 33.5, 6, -5.5 )
+
+[node name="GoalPiece" parent="." index="9" instance=ExtResource( 7 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 11, 9 )
+
+[node name="Box" parent="." index="10" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2.5, 6.5 )
+
+[node name="Camera" type="Camera" parent="." index="11"]
+
+transform = Transform( -3.9616e-008, 0.422618, -0.906308, 1.84732e-008, 0.906308, 0.422618, 1, 0, -4.37114e-008, -15, 12, 0 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = false
+fov = 70.0
+size = 1.0
+near = 0.05
+far = 100.0
+_sections_unfolded = [ "Transform" ]
+
+
