@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://Player.gd" type="Script" id=8]
 [ext_resource path="res://Box.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Box.gd" type="Script" id=10]
+
+[sub_resource type="BoxShape" id=1]
+
+extents = Vector3( 4.19927, 6.1972, 1 )
 
 [node name="Main" type="Spatial" index="0"]
 
@@ -43,10 +47,44 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5, 4.5, 0 )
 [node name="Ball" parent="EndPlatform" index="1" instance=ExtResource( 4 )]
 
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -3, 1.5, -5.5 )
+mass = 30.0
+can_sleep = false
+linear_damp = 0.5
+angular_damp = 0.5
+_sections_unfolded = [ "Angular", "Linear" ]
 
 [node name="GoalPiece" parent="EndPlatform" index="2" instance=ExtResource( 5 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 6.5, 9 )
+
+[node name="Area" type="Area" parent="EndPlatform" index="3"]
+
+input_ray_pickable = false
+input_capture_on_drag = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision_layer = 1
+collision_mask = 1
+audio_bus_override = false
+audio_bus_name = "Master"
+reverb_bus_enable = false
+reverb_bus_name = "Master"
+reverb_bus_amount = 0.0
+reverb_bus_uniformity = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="EndPlatform/Area" index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 6.5, 11 )
+shape = SubResource( 1 )
+disabled = false
 
 [node name="Ramp" parent="." index="6" instance=ExtResource( 6 )]
 
@@ -79,6 +117,74 @@ _sections_unfolded = [ "Transform" ]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2.5, 6.5 )
 script = ExtResource( 10 )
+
+[node name="Panel" type="Panel" parent="." index="9"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -84.0
+margin_top = -45.0
+margin_right = 84.0
+margin_bottom = 45.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Label" type="Label" parent="Panel" index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -28.0
+margin_top = -7.0
+margin_right = 28.0
+margin_bottom = 7.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "You Win!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="10"]
+
+transform = Transform( -0.912329, 0.12941, -0.38847, -0.0868241, 0.866025, 0.492404, 0.400147, 0.482963, -0.778864, 0, 23, 0 )
+layers = 1
+light_color = Color( 1, 1, 1, 1 )
+light_energy = 0.5
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 0.1
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.1
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = false
+directional_shadow_normal_bias = 0.8
+directional_shadow_bias_split_scale = 0.25
+directional_shadow_depth_range = 0
+directional_shadow_max_distance = 200.0
+_sections_unfolded = [ "Light", "Shadow" ]
+
+[connection signal="body_entered" from="EndPlatform/Area" to="." method="_on_Area_body_entered"]
 
 [connection signal="body_entered" from="Box" to="Box" method="_on_Box_body_entered"]
 

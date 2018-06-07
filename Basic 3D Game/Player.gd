@@ -36,7 +36,7 @@ func _physics_process(delta):
 	
 	if is_on_floor() && Input.is_key_pressed(KEY_SPACE):
 		velocity.y = 10
-		
+	
 	var hitCount = get_slide_count()
 	if hitCount > 0:
 		var collision = get_slide_collision(0)
