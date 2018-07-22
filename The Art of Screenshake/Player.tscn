@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://player.png" type="Texture" id=2]
+[ext_resource path="res://gun.png" type="Texture" id=3]
+
+[node name="Player" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+gravity = 35
+acceleration = 50
+max_speed = 500
+jump_height = -1050
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." index="0"]
+
+use_parent_material = true
+build_mode = 0
+polygon = PoolVector2Array( -31.9809, -48.0283, 32.0409, -48.0283, 31.997, 20.0326, 21.999, 48.0117, -19.9875, 48.0195, -32.0587, 19.9746 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1.2, 1.2 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
+[node name="Gun" type="Sprite" parent="." index="3"]
+
+position = Vector2( 18.044, -0.487671 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position2D" type="Position2D" parent="Gun" index="0"]
+
+position = Vector2( 31.447, -10.1981 )
+_sections_unfolded = [ "Transform" ]
+
+
