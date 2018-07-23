@@ -1,14 +1,22 @@
 extends RigidBody2D
 
-export var speed = 1600
+export var hspeed = 1600
+export var vspeed = 0
 
 func _ready():
-	set_axis_velocity(Vector2(speed, 0))
+	set_axis_velocity(Vector2(hspeed, vspeed))
 
 func _on_Timer_timeout():
 	queue_free()
 
 func _on_Bullet_body_entered(body):
+	
+	var bullet_impact = load("res://BulletImpact.tscn").instance()
+	bullet_impact.set_position($Position2D.get_global_position())
+	if rad2deg(rotation) > -90 && rad2deg(rotation) < 90:
+		bullet_impact.rotate(deg2rad(180))
+	get_node("/root").add_child(bullet_impact)
+	
 	queue_free()
 	
 	if body.is_in_group("Enemy"):

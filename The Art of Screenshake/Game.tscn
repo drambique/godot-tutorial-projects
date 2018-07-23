@@ -164,6 +164,53 @@ position = Vector2( 72.2782, 313.116 )
 
 position = Vector2( 983.383, -211.732 )
 
+[node name="Enemy3" parent="Enemies" index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 2470.94, 304.358 )
+on_start_move_left = true
+
+[node name="Enemy4" parent="Enemies" index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 247.196, -207.937 )
+on_start_move_left = true
+
+[node name="Enemy5" parent="Enemies" index="4" instance=ExtResource( 4 )]
+
+position = Vector2( 1283.17, 638.298 )
+on_start_move_left = true
+
+[node name="Enemy6" parent="Enemies" index="5" instance=ExtResource( 4 )]
+
+position = Vector2( 1488.09, 630.709 )
+
+[node name="Enemy7" parent="Enemies" index="6" instance=ExtResource( 4 )]
+
+position = Vector2( 2015.56, 786.295 )
+on_start_move_left = true
+
+[node name="Enemy8" parent="Enemies" index="7" instance=ExtResource( 4 )]
+
+position = Vector2( -633.193, 182.925 )
+on_start_move_left = true
+
+[node name="Enemy9" parent="Enemies" index="8" instance=ExtResource( 4 )]
+
+position = Vector2( -352.379, 80.466 )
+on_start_move_left = true
+
+[node name="Enemy10" parent="Enemies" index="9" instance=ExtResource( 4 )]
+
+position = Vector2( 57.4567, -185.168 )
+on_start_move_left = true
+
+[node name="Enemy11" parent="Enemies" index="10" instance=ExtResource( 4 )]
+
+position = Vector2( 1226.25, -211.732 )
+
+[node name="Enemy12" parent="Enemies" index="11" instance=ExtResource( 4 )]
+
+position = Vector2( 1799.26, -249.68 )
+
 [node name="TestAnglePlatform" type="StaticBody2D" parent="." index="4"]
 
 editor/display_folded = true

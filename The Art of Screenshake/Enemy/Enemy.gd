@@ -59,3 +59,18 @@ func hurt(damage = 1):
 		temp_audio.set_position(self.position)
 		temp_audio.set_stream(preload("death.wav"))
 		get_node("/root").add_child(temp_audio)
+		
+		# create sprite node
+		var corpse = Sprite.new()
+		corpse.set_name("corpse")
+		corpse.set_texture(preload("res://enemy_corpse.png"))
+		corpse.set_position(self.position)
+		get_node("/root").add_child(corpse)
+	
+	# Tint sprite white using CanvasModulate node
+	$Sprite.modulate = Color(10, 10, 10, 10)
+	$Sprite/CanvasModulate/Timer.start()
+
+func _on_Timer_timeout():
+	# Untint sprite using CanvasModulate node
+	$Sprite.modulate = Color(1, 1, 1, 1)

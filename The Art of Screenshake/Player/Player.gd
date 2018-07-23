@@ -10,6 +10,7 @@ export var jump_height = -1050
 var motion = Vector2()
 var is_facing_left = false
 var on_floor_last_frame
+var muzzle_flash_radius
 
 func _physics_process(delta):
 	
@@ -55,16 +56,30 @@ func _physics_process(delta):
 	
 	# shooting
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot") && $Timer.is_stopped():
+		$Timer.start()
+		
 		var bullet = load("res://Bullet/Bullet.tscn").instance()
 		bullet.set_position($Gun/Position2D.get_global_position())
-		if $AnimatedSprite.flip_h:
+		if is_facing_left:
 			bullet.rotate(deg2rad(180))
-			bullet.speed = -bullet.speed
+			bullet.hspeed = -bullet.hspeed
+		bullet.vspeed = rand_range(-300, 300)
 		get_node("/root").add_child(bullet)
 		
 		$AudioStreamPlayer.set_stream(preload("shoot.wav"))
 		$AudioStreamPlayer.play()
+		
+		muzzle_flash_radius = 35
+	else:
+		muzzle_flash_radius = 0
+	
+	update()
+	
+func _draw():
+	
+	# muzzle flash
+	draw_circle(Vector2($Gun/Position2D.position.x * 1.6, $Gun/Position2D.position.y), muzzle_flash_radius, Color(1, 1, 1))
 
 func set_facing_direction(face_right):
 	if face_right && is_facing_left:

@@ -3,11 +3,10 @@
 [ext_resource path="res://Bullet/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://Bullet/bullet.png" type="Texture" id=2]
 
-[sub_resource type="RayShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-length = 31.0
-_sections_unfolded = [ "Resource" ]
+radius = 18.0
 
 [node name="Bullet" type="RigidBody2D"]
 
@@ -18,7 +17,7 @@ mode = 0
 mass = 1.0
 friction = 1.0
 bounce = 0.0
-gravity_scale = 1.0
+gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
 contacts_reported = 1
@@ -31,18 +30,19 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear" ]
-speed = 1600
+hspeed = 2000
+vspeed = 0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 0.5, 0.2 )
+scale = Vector2( 1, 1.2 )
 texture = ExtResource( 2 )
-centered = false
-offset = Vector2( 0, -32 )
+offset = Vector2( 32, -2 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
+position = Vector2( 45, -2 )
 rotation = -1.5708
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -64,6 +64,11 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+
+[node name="Position2D" type="Position2D" parent="." index="4"]
+
+position = Vector2( 63, -2 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 

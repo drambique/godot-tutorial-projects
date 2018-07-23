@@ -32,7 +32,7 @@ tracks/0/keys = {
 "values": [ 0.0, 90.0, 180.0, 270.0, 360.0 ]
 }
 
-[node name="Enemy" type="KinematicBody2D" index="0" groups=[
+[node name="Enemy" type="KinematicBody2D" groups=[
 "Enemy",
 ]]
 
@@ -42,7 +42,7 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
-health = 15
+health = 3
 gravity = 35
 acceleration = 20
 max_speed = 300
@@ -52,6 +52,17 @@ on_start_move_left = false
 
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Sprite" index="0"]
+
+color = Color( 1, 1, 1, 1 )
+
+[node name="Timer" type="Timer" parent="Sprite/CanvasModulate" index="0"]
+
+process_mode = 1
+wait_time = 0.05
+one_shot = true
+autostart = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
@@ -116,6 +127,8 @@ playback_speed = 1.0
 anims/movement = SubResource( 3 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
+
+[connection signal="timeout" from="Sprite/CanvasModulate/Timer" to="." method="_on_Timer_timeout"]
 
 [connection signal="body_entered" from="LeftCollider" to="." method="_on_LeftCollider_body_entered"]
 
