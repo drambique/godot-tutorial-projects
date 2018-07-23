@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://player.png" type="Texture" id=2]
-[ext_resource path="res://gun.png" type="Texture" id=3]
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/player_idle.png" type="Texture" id=2]
+[ext_resource path="res://Player/player_walk_1.png" type="Texture" id=3]
+[ext_resource path="res://Player/player_walk_2.png" type="Texture" id=4]
+[ext_resource path="res://gun.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 7.0
+} ]
 
 [node name="Player" type="KinematicBody2D"]
 
@@ -23,9 +39,10 @@ build_mode = 0
 polygon = PoolVector2Array( -31.9809, -48.0283, 32.0409, -48.0283, 31.997, 20.0326, 21.999, 48.0117, -19.9875, 48.0195, -32.0587, 19.9746 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 
-texture = ExtResource( 2 )
+frames = SubResource( 1 )
+animation = "idle"
 _sections_unfolded = [ "Offset" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
@@ -57,12 +74,21 @@ editor_draw_drag_margin = false
 
 position = Vector2( 18.044, -0.487671 )
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Position2D" type="Position2D" parent="Gun" index="0"]
 
 position = Vector2( 31.447, -10.1981 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

@@ -1,11 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tileset/Tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://crate.png" type="Texture" id=3]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
@@ -39,7 +45,7 @@ __meta__ = {
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( 601.748, 513.037 )
+position = Vector2( 604.02, 467.596 )
 
 [node name="Blocks" type="Node" parent="." index="2"]
 
@@ -152,11 +158,36 @@ shape = SubResource( 1 )
 
 [node name="Enemy1" parent="Enemies" index="0" instance=ExtResource( 4 )]
 
-position = Vector2( 351.743, 624.39 )
+position = Vector2( 72.2782, 313.116 )
 
 [node name="Enemy2" parent="Enemies" index="1" instance=ExtResource( 4 )]
 
-position = Vector2( 1331.01, 622.118 )
-on_start_move_left = true
+position = Vector2( 983.383, -211.732 )
+
+[node name="TestAnglePlatform" type="StaticBody2D" parent="." index="4"]
+
+editor/display_folded = true
+position = Vector2( 673.3, 250.167 )
+rotation = 2.79951
+scale = Vector2( 4.48282, 1 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestAnglePlatform" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="TestAnglePlatform" index="1"]
+
+texture = ExtResource( 5 )
 
 

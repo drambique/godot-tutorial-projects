@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TemporaryAudioObject.gd" type="Script" id=1]
+
+[node name="TemporaryAudioObject" type="AudioStreamPlayer2D" index="0"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+script = ExtResource( 1 )
+
+[connection signal="finished" from="." to="." method="_on_TemporaryAudioObject_finished"]
+
+

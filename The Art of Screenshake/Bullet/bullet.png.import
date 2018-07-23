@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy.png-f7d9f81714867a24a08e299bb600e611.stex"
+path="res://.import/bullet.png-661b8c265bf8c2e32d8718aef7609a30.stex"
 
 [deps]
 
-source_file="res://enemy.png"
-dest_files=[ "res://.import/enemy.png-f7d9f81714867a24a08e299bb600e611.stex" ]
+source_file="res://Bullet/bullet.png"
+dest_files=[ "res://.import/bullet.png-661b8c265bf8c2e32d8718aef7609a30.stex" ]
 
 [params]
 
