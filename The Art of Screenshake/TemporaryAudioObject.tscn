@@ -1,10 +1,20 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://TemporaryAudioObject.gd" type="Script" id=1]
 
+[sub_resource type="AudioStreamSample" id=1]
+
+format = 0
+loop_mode = 0
+loop_begin = 0
+loop_end = 0
+mix_rate = 44100
+stereo = false
+data = PoolByteArray(  )
+
 [node name="TemporaryAudioObject" type="AudioStreamPlayer2D" index="0"]
 
-stream = null
+stream = SubResource( 1 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = true

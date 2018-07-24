@@ -48,10 +48,7 @@ func hurt(damage = 1):
 	health -= damage
 	
 	if health > 0:
-		var temp_audio = load("res://TemporaryAudioObject.tscn").instance()
-		temp_audio.set_position(self.position)
-		temp_audio.set_stream(preload("hurt.wav"))
-		get_node("/root").add_child(temp_audio)
+		$AudioStreamPlayer2D.play()
 	else:
 		queue_free()
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player_idle.png" type="Texture" id=2]
@@ -20,7 +20,17 @@ animations = [ {
 "speed": 7.0
 } ]
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[sub_resource type="AudioStreamSample" id=2]
+
+format = 0
+loop_mode = 0
+loop_begin = 0
+loop_end = 0
+mix_rate = 44100
+stereo = false
+data = PoolByteArray(  )
+
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -85,7 +95,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
 
-stream = null
+stream = SubResource( 2 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false

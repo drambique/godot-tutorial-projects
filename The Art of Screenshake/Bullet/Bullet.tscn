@@ -54,18 +54,7 @@ wait_time = 5.0
 one_shot = false
 autostart = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3"]
-
-stream = null
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[node name="Position2D" type="Position2D" parent="." index="4"]
+[node name="Position2D" type="Position2D" parent="." index="3"]
 
 position = Vector2( 63, -2 )
 _sections_unfolded = [ "Transform" ]

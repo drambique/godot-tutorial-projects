@@ -16,7 +16,7 @@ extents = Vector2( 32, 32 )
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0" groups=[
 "UnmovableSolid",
