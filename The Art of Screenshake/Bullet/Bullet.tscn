@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 18.0
+radius = 7.99794
 
 [node name="Bullet" type="RigidBody2D"]
 
@@ -30,19 +30,19 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear" ]
-hspeed = 2000
+hspeed = 3000
 vspeed = 0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 1, 1.2 )
+scale = Vector2( 1, 0.5 )
 texture = ExtResource( 2 )
 offset = Vector2( 32, -2 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 45, -2 )
+position = Vector2( 54.2529, -0.843391 )
 rotation = -1.5708
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -56,7 +56,7 @@ autostart = true
 
 [node name="Position2D" type="Position2D" parent="." index="3"]
 
-position = Vector2( 63, -2 )
+position = Vector2( 61.9719, -1.22893 )
 _sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

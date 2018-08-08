@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player_idle.png" type="Texture" id=2]
@@ -30,7 +30,12 @@ mix_rate = 44100
 stereo = false
 data = PoolByteArray(  )
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 22, 48 )
+
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -41,21 +46,17 @@ gravity = 35
 acceleration = 50
 max_speed = 500
 jump_height = -1050
+camera_lerp_distance = 260
+camera_lerp_weight = 0.08
+bullet_inaccuracy = 200
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." index="0"]
-
-use_parent_material = true
-build_mode = 0
-polygon = PoolVector2Array( -31.9809, -48.0283, 32.0409, -48.0283, 31.997, 20.0326, 21.999, 48.0117, -19.9875, 48.0195, -32.0587, 19.9746 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
 animation = "idle"
 _sections_unfolded = [ "Offset" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
+[node name="Camera2D" type="Camera2D" parent="." index="1"]
 
 anchor_mode = 1
 rotating = false
@@ -81,7 +82,7 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Smoothing" ]
 
-[node name="Gun" type="Sprite" parent="." index="3"]
+[node name="Gun" type="Sprite" parent="." index="2"]
 
 position = Vector2( 18.044, -0.487671 )
 scale = Vector2( 0.6, 0.6 )
@@ -93,7 +94,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 31.447, -10.1981 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
 
 stream = SubResource( 2 )
 volume_db = 0.0
@@ -102,11 +103,15 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Timer" type="Timer" parent="." index="5"]
+[node name="Timer" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 0.15
 one_shot = true
 autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+
+shape = SubResource( 3 )
 
 

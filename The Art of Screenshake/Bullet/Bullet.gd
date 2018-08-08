@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export var hspeed = 1600
+export var hspeed = 3000
 export var vspeed = 0
 
 func _ready():

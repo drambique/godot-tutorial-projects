@@ -6,15 +6,19 @@ export var gravity = 35
 export var acceleration = 50
 export var max_speed = 500
 export var jump_height = -1050
+export var camera_lerp_distance = 260
+export var camera_lerp_weight = .08
+export var bullet_inaccuracy = 200
 
 var motion = Vector2()
 var is_facing_left = false
 var on_floor_last_frame
 var muzzle_flash_radius
+var camera_position = Vector2()
 
 func _physics_process(delta):
 	
-	# movement
+	# movement & camera
 	
 	on_floor_last_frame = is_on_floor()
 	
@@ -24,9 +28,22 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_right"):
 		motion.x = min(motion.x + acceleration, max_speed)
 		set_facing_direction(true)
+		camera_position.x = camera_lerp_distance
 	elif Input.is_action_pressed("ui_left"):
 		motion.x = max(motion.x - acceleration, -max_speed)
 		set_facing_direction(false)
+		camera_position.x = -camera_lerp_distance
+	else:
+		#camera_position.x = 0
+		pass
+	
+	$Camera2D.position.x = lerp($Camera2D.position.x, camera_position.x, camera_lerp_weight)
+	#$Camera2D.position.y = lerp($Camera2D.position.y, camera_position.y, camera_lerp_weight)
+	
+	$Camera2D.offset.x = lerp($Camera2D.offset.x, 0, camera_lerp_weight)
+	$Camera2D.offset.y = lerp($Camera2D.offset.y, 0, camera_lerp_weight)
+	
+	# animation
 	
 	if Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_right"):
 		if is_on_floor():
@@ -64,11 +81,13 @@ func _physics_process(delta):
 		if is_facing_left:
 			bullet.rotate(deg2rad(180))
 			bullet.hspeed = -bullet.hspeed
-		bullet.vspeed = rand_range(-300, 300)
+		bullet.vspeed = rand_range(-bullet_inaccuracy, bullet_inaccuracy)
 		get_node("/root").add_child(bullet)
 		
 		$AudioStreamPlayer.set_stream(preload("shoot.wav"))
 		$AudioStreamPlayer.play()
+		
+		screenshake(7)
 		
 		muzzle_flash_radius = 35
 	else:
@@ -88,16 +107,20 @@ func set_facing_direction(face_right):
 		$Gun.flip_h = false
 		$Gun.position.x = abs($Gun.position.x)
 		$Gun/Position2D.position.x = abs($Gun/Position2D.position.x)
-		$CollisionShape2D.set_polygon(mirror_shape($CollisionShape2D.get_polygon()))
+		#$CollisionShape2D.set_polygon(mirror_shape($CollisionShape2D.get_polygon()))
 	elif !face_right && !is_facing_left:
 		is_facing_left = true
 		$AnimatedSprite.flip_h = true
 		$Gun.flip_h = true
 		$Gun.position.x = -abs($Gun.position.x)
 		$Gun/Position2D.position.x = -abs($Gun/Position2D.position.x)
-		$CollisionShape2D.set_polygon(mirror_shape($CollisionShape2D.get_polygon()))
+		#$CollisionShape2D.set_polygon(mirror_shape($CollisionShape2D.get_polygon()))
 
 func mirror_shape(polygon): # mirror coordinates of polygon over Y axis
 	for i in range(polygon.size()):
 		polygon.set(i, Vector2(-polygon[i].x, polygon[i].y))
 	return polygon
+
+func screenshake(amount):
+	$Camera2D.offset = Vector2(rand_range(-amount, amount), rand_range(-amount, amount))
+	
