@@ -21,6 +21,10 @@ func _on_Bullet_body_entered(body):
 	
 	if body.is_in_group("Enemy"):
 		body.hurt()
+		
+		get_node("/root/Game/PauseGameTimeout").set_time(.02)
+		get_tree().paused = true
+		
 	
 	var temp_audio = load("res://TemporaryAudioObject.tscn").instance()
 	temp_audio.set_position(self.position)

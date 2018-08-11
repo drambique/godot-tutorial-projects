@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tileset/Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://crate.png" type="Texture" id=3]
 [ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://PauseGameTimeout.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -16,7 +17,7 @@ extents = Vector2( 32, 32 )
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0" groups=[
 "UnmovableSolid",
@@ -46,6 +47,7 @@ __meta__ = {
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 640, 480 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Blocks" type="Node" parent="." index="2"]
 
@@ -240,5 +242,7 @@ shape = SubResource( 2 )
 [node name="Sprite" type="Sprite" parent="TestAnglePlatform" index="1"]
 
 texture = ExtResource( 5 )
+
+[node name="PauseGameTimeout" parent="." index="5" instance=ExtResource( 6 )]
 
 

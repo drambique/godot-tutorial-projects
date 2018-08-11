@@ -9,6 +9,7 @@ export var jump_height = -1050
 export var camera_lerp_distance = 260
 export var camera_lerp_weight = .08
 export var bullet_inaccuracy = 200
+export var knockback_amount = 100
 
 var motion = Vector2()
 var is_facing_left = false
@@ -40,6 +41,7 @@ func _physics_process(delta):
 	$Camera2D.position.x = lerp($Camera2D.position.x, camera_position.x, camera_lerp_weight)
 	#$Camera2D.position.y = lerp($Camera2D.position.y, camera_position.y, camera_lerp_weight)
 	
+	# fix screenshake offset
 	$Camera2D.offset.x = lerp($Camera2D.offset.x, 0, camera_lerp_weight)
 	$Camera2D.offset.y = lerp($Camera2D.offset.y, 0, camera_lerp_weight)
 	
@@ -90,6 +92,11 @@ func _physics_process(delta):
 		
 		screenshake(7)
 		
+		if is_facing_left:
+			motion.x += knockback_amount
+		else:
+			motion.x -= knockback_amount
+		
 		muzzle_flash_radius = 35
 	else:
 		muzzle_flash_radius = 0
@@ -126,7 +133,7 @@ func screenshake(amount):
 	var shake_vect = Vector2(rand_float(-1, 1), rand_float(-1, 1)).normalized() * amount
 	while shake_vect.length() == 0:
 		shake_vect = Vector2(rand_float(-1, 1), rand_float(-1, 1)).normalized() * amount
-	print(str(shake_vect) + " " + str(shake_vect.length()))
+	#print(str(shake_vect) + " " + str(shake_vect.length()))
 	$Camera2D.offset = shake_vect
 
 func rand_float(min_val, max_val):
