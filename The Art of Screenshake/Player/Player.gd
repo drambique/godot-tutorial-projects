@@ -81,6 +81,7 @@ func _physics_process(delta):
 		if is_facing_left:
 			bullet.rotate(deg2rad(180))
 			bullet.hspeed = -bullet.hspeed
+		randomize()
 		bullet.vspeed = rand_range(-bullet_inaccuracy, bullet_inaccuracy)
 		get_node("/root").add_child(bullet)
 		
@@ -122,5 +123,12 @@ func mirror_shape(polygon): # mirror coordinates of polygon over Y axis
 	return polygon
 
 func screenshake(amount):
-	$Camera2D.offset = Vector2(rand_range(-amount, amount), rand_range(-amount, amount))
-	
+	var shake_vect = Vector2(rand_float(-1, 1), rand_float(-1, 1)).normalized() * amount
+	while shake_vect.length() == 0:
+		shake_vect = Vector2(rand_float(-1, 1), rand_float(-1, 1)).normalized() * amount
+	print(str(shake_vect) + " " + str(shake_vect.length()))
+	$Camera2D.offset = shake_vect
+
+func rand_float(min_val, max_val):
+	randomize()
+	return randf() * (max_val + 1) + min_val
