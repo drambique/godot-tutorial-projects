@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Tileset/Tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://crate.png" type="Texture" id=3]
-[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
-[ext_resource path="res://PauseGameTimeout.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://Tileset/Tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://crate.png" type="Texture" id=4]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://texture.png" type="Texture" id=6]
+[ext_resource path="res://PauseGameTimeout.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -15,16 +16,18 @@ extents = Vector2( 32, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
+extents = Vector2( 100, 100 )
 
-[node name="Game" type="Node" index="0"]
+[node name="Game" type="Node"]
+
+script = ExtResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="." index="0" groups=[
 "UnmovableSolid",
 ]]
 
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -44,7 +47,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 640, 480 )
 _sections_unfolded = [ "Transform" ]
@@ -82,7 +85,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Blocks/TestBlock1" index="0"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/TestBlock1" index="1"]
 
@@ -117,7 +120,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Blocks/TestBlock2" index="0"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/TestBlock2" index="1"]
 
@@ -152,7 +155,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Blocks/TestBlock3" index="0"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blocks/TestBlock3" index="1"]
 
@@ -162,67 +165,66 @@ shape = SubResource( 1 )
 
 editor/display_folded = true
 
-[node name="Enemy1" parent="Enemies" index="0" instance=ExtResource( 4 )]
+[node name="Enemy1" parent="Enemies" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 72.2782, 313.116 )
 
-[node name="Enemy2" parent="Enemies" index="1" instance=ExtResource( 4 )]
+[node name="Enemy2" parent="Enemies" index="1" instance=ExtResource( 5 )]
 
 position = Vector2( 983.383, -211.732 )
 
-[node name="Enemy3" parent="Enemies" index="2" instance=ExtResource( 4 )]
+[node name="Enemy3" parent="Enemies" index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 2470.94, 304.358 )
 on_start_move_left = true
 
-[node name="Enemy4" parent="Enemies" index="3" instance=ExtResource( 4 )]
+[node name="Enemy4" parent="Enemies" index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 247.196, -207.937 )
 on_start_move_left = true
 
-[node name="Enemy5" parent="Enemies" index="4" instance=ExtResource( 4 )]
+[node name="Enemy5" parent="Enemies" index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 1283.17, 638.298 )
 on_start_move_left = true
 
-[node name="Enemy6" parent="Enemies" index="5" instance=ExtResource( 4 )]
+[node name="Enemy6" parent="Enemies" index="5" instance=ExtResource( 5 )]
 
 position = Vector2( 1488.09, 630.709 )
 
-[node name="Enemy7" parent="Enemies" index="6" instance=ExtResource( 4 )]
+[node name="Enemy7" parent="Enemies" index="6" instance=ExtResource( 5 )]
 
 position = Vector2( 2015.56, 786.295 )
 on_start_move_left = true
 
-[node name="Enemy8" parent="Enemies" index="7" instance=ExtResource( 4 )]
+[node name="Enemy8" parent="Enemies" index="7" instance=ExtResource( 5 )]
 
 position = Vector2( -633.193, 182.925 )
 on_start_move_left = true
 
-[node name="Enemy9" parent="Enemies" index="8" instance=ExtResource( 4 )]
+[node name="Enemy9" parent="Enemies" index="8" instance=ExtResource( 5 )]
 
 position = Vector2( -352.379, 80.466 )
 on_start_move_left = true
 
-[node name="Enemy10" parent="Enemies" index="9" instance=ExtResource( 4 )]
+[node name="Enemy10" parent="Enemies" index="9" instance=ExtResource( 5 )]
 
 position = Vector2( 57.4567, -185.168 )
 on_start_move_left = true
 
-[node name="Enemy11" parent="Enemies" index="10" instance=ExtResource( 4 )]
+[node name="Enemy11" parent="Enemies" index="10" instance=ExtResource( 5 )]
 
 position = Vector2( 1226.25, -211.732 )
 
-[node name="Enemy12" parent="Enemies" index="11" instance=ExtResource( 4 )]
+[node name="Enemy12" parent="Enemies" index="11" instance=ExtResource( 5 )]
 
 position = Vector2( 1799.26, -249.68 )
 
 [node name="TestAnglePlatform" type="StaticBody2D" parent="." index="4"]
 
 editor/display_folded = true
-position = Vector2( 673.3, 250.167 )
-rotation = 2.79951
-scale = Vector2( 4.48282, 1 )
+position = Vector2( 810.3, 250.167 )
+rotation = 2.79253
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -235,14 +237,15 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestAnglePlatform" index="0"]
+[node name="Sprite" type="Sprite" parent="TestAnglePlatform" index="0"]
+
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestAnglePlatform" index="1"]
 
 shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="TestAnglePlatform" index="1"]
-
-texture = ExtResource( 5 )
-
-[node name="PauseGameTimeout" parent="." index="5" instance=ExtResource( 6 )]
+[node name="PauseGameTimeout" parent="." index="5" instance=ExtResource( 7 )]
 
 

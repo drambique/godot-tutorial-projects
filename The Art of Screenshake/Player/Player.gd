@@ -39,7 +39,9 @@ func _physics_process(delta):
 		pass
 	
 	$Camera2D.position.x = lerp($Camera2D.position.x, camera_position.x, camera_lerp_weight)
-	#$Camera2D.position.y = lerp($Camera2D.position.y, camera_position.y, camera_lerp_weight)
+	
+	$Gun.offset = Vector2(lerp($Gun.offset.x, -motion.x / 30, 0.8), lerp($Gun.offset.y, -motion.y / 30, 0.8))
+	#print($Gun.offset)
 	
 	# fix screenshake offset
 	$Camera2D.offset.x = lerp($Camera2D.offset.x, 0, camera_lerp_weight)
@@ -76,6 +78,7 @@ func _physics_process(delta):
 	# shooting
 	
 	if Input.is_action_pressed("shoot") && $Timer.is_stopped():
+		
 		$Timer.start()
 		
 		var bullet = load("res://Bullet/Bullet.tscn").instance()
@@ -94,12 +97,20 @@ func _physics_process(delta):
 		
 		if is_facing_left:
 			motion.x += knockback_amount
+			$Gun.rotation = deg2rad(50)
 		else:
 			motion.x -= knockback_amount
+			$Gun.rotation = deg2rad(-50)
 		
 		muzzle_flash_radius = 35
 	else:
 		muzzle_flash_radius = 0
+	
+	# fix gun knockback
+	
+	$Gun.rotation = lerp($Gun.rotation, 0, 0.3)
+	
+	# update draw
 	
 	update()
 	

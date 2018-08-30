@@ -4,7 +4,7 @@ func set_time(time = 1):
 	wait_time = time
 
 func _process(delta):
-	print(time_left)
+	#print(time_left)
 	if get_tree().paused && is_stopped():
 		start()
 

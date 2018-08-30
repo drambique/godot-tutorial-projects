@@ -11,22 +11,24 @@ func _on_Timer_timeout():
 
 func _on_Bullet_body_entered(body):
 	
-	var bullet_impact = load("res://BulletImpact.tscn").instance()
-	bullet_impact.set_position($Position2D.get_global_position())
-	if rad2deg(rotation) > -90 && rad2deg(rotation) < 90:
-		bullet_impact.rotate(deg2rad(180))
-	get_node("/root").add_child(bullet_impact)
-	
-	queue_free()
-	
-	if body.is_in_group("Enemy"):
-		body.hurt()
+	if !body.get_name() == "Player":
 		
-		get_node("/root/Game/PauseGameTimeout").set_time(.02)
-		get_tree().paused = true
+		var bullet_impact = load("res://BulletImpact.tscn").instance()
+		bullet_impact.set_position($Position2D.get_global_position())
+		if rad2deg(rotation) > -90 && rad2deg(rotation) < 90:
+			bullet_impact.rotate(deg2rad(180))
+		get_node("/root").add_child(bullet_impact)
 		
-	
-	var temp_audio = load("res://TemporaryAudioObject.tscn").instance()
-	temp_audio.set_position(self.position)
-	temp_audio.set_stream(preload("hit.wav"))
-	get_node("/root").add_child(temp_audio)
+		queue_free()
+		
+		if body.is_in_group("Enemy"):
+			body.hurt()
+			
+			get_node("/root/Game/PauseGameTimeout").set_time(.02)
+			get_tree().paused = true
+			
+		
+		var temp_audio = load("res://TemporaryAudioObject.tscn").instance()
+		temp_audio.set_position(self.position)
+		temp_audio.set_stream(preload("hit.wav"))
+		get_node("/root").add_child(temp_audio)
