@@ -16,6 +16,7 @@ var is_facing_left = false
 var on_floor_last_frame
 var muzzle_flash_radius
 var camera_position = Vector2()
+var camera_strafe_locked = false
 
 func _physics_process(delta):
 	
@@ -26,14 +27,21 @@ func _physics_process(delta):
 	motion.y += gravity
 	var friction = false
 	
+	if Input.is_action_pressed("shoot") && camera_position.x != 0:
+		camera_strafe_locked = true
+	else:
+		camera_strafe_locked = false
+	
 	if Input.is_action_pressed("ui_right"):
 		motion.x = min(motion.x + acceleration, max_speed)
-		set_facing_direction(true)
-		camera_position.x = camera_lerp_distance
+		if !camera_strafe_locked:
+			set_facing_direction(true)
+			camera_position.x = camera_lerp_distance
 	elif Input.is_action_pressed("ui_left"):
 		motion.x = max(motion.x - acceleration, -max_speed)
-		set_facing_direction(false)
-		camera_position.x = -camera_lerp_distance
+		if !camera_strafe_locked:
+			set_facing_direction(false)
+			camera_position.x = -camera_lerp_distance
 	else:
 		#camera_position.x = 0
 		pass
