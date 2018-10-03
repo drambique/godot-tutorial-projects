@@ -110,6 +110,16 @@ func _physics_process(delta):
 			motion.x -= knockback_amount
 			$Gun.rotation = deg2rad(-50)
 		
+		var shell = load("res://Shell.tscn").instance()
+		shell.set_position(get_global_position())
+		get_node("/root").add_child(shell)
+		if is_facing_left:
+			shell.apply_impulse(Vector2(0, 0), Vector2(200, -400))
+			shell.applied_torque = 200
+		else:
+			shell.apply_impulse(Vector2(0, 0), Vector2(-200, -400))
+			shell.applied_torque = -200
+		
 		muzzle_flash_radius = 35
 	else:
 		muzzle_flash_radius = 0

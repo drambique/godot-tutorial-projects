@@ -1,5 +1,11 @@
 extends Node
 
+func _ready():
+	
+	# hide cursor
+	
+	Input.set_mouse_mode(1)
+
 func _process(delta):
 	
 	# quick quit
