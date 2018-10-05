@@ -70,8 +70,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("jump"):
 			motion.y = jump_height
 			
-			$AudioStreamPlayer.set_stream(preload("jump.wav"))
-			$AudioStreamPlayer.play()
+			$JumpSound.play()
 		if friction:
 			motion.x = lerp(motion.x, 0, 0.2) # Slow down by 20% every frame
 	elif friction:
@@ -80,8 +79,7 @@ func _physics_process(delta):
 	motion = move_and_slide(motion, UP)
 	
 	if (!on_floor_last_frame && is_on_floor()): # detect when player lands
-		$AudioStreamPlayer.set_stream(preload("land.wav"))
-		$AudioStreamPlayer.play()
+		$LandSound.play()
 	
 	# shooting
 	
@@ -98,8 +96,7 @@ func _physics_process(delta):
 		bullet.vspeed = rand_range(-bullet_inaccuracy, bullet_inaccuracy)
 		get_node("/root").add_child(bullet)
 		
-		$AudioStreamPlayer.set_stream(preload("shoot.wav"))
-		$AudioStreamPlayer.play()
+		$ShootSound.play()
 		
 		screenshake(7)
 		

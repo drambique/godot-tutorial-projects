@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player_idle.png" type="Texture" id=2]
 [ext_resource path="res://Player/player_walk_1.png" type="Texture" id=3]
 [ext_resource path="res://Player/player_walk_2.png" type="Texture" id=4]
 [ext_resource path="res://gun.png" type="Texture" id=5]
+[ext_resource path="res://Player/jump.wav" type="AudioStream" id=6]
+[ext_resource path="res://Player/land.wav" type="AudioStream" id=7]
+[ext_resource path="res://Player/shoot.wav" type="AudioStream" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -20,17 +23,7 @@ animations = [ {
 "speed": 7.0
 } ]
 
-[sub_resource type="AudioStreamSample" id=2]
-
-format = 0
-loop_mode = 0
-loop_begin = 0
-loop_end = 0
-mix_rate = 44100
-stereo = false
-data = PoolByteArray(  )
-
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 22, 48 )
@@ -95,24 +88,42 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 31.447, -10.1981 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+[node name="JumpSound" type="AudioStreamPlayer" parent="." index="3"]
 
-stream = SubResource( 2 )
+stream = ExtResource( 6 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Timer" type="Timer" parent="." index="4"]
+[node name="LandSound" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 8 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Timer" type="Timer" parent="." index="6"]
 
 process_mode = 1
 wait_time = 0.15
 one_shot = true
 autostart = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="7"]
 
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 
