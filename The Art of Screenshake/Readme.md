@@ -59,3 +59,5 @@
 29. Even More Permanence (you get the idea, just make sure things either don’t disappear, or show HOW they disappear)
 
 30. Meaning (allow they player to win or lose, and guide them towards forming an opinion on what it means to do one or the other)
+
+[list from here](https://www.reddit.com/r/gamedev/comments/1t0jlc/vlambeers_jan_willem_nijman_the_art_of_screenshake/ce3qmg8)
