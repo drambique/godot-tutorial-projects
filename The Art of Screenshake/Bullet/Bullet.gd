@@ -26,7 +26,9 @@ func _on_Bullet_body_entered(body):
 			
 			get_node("/root/Game/PauseGameTimeout").set_time(.02)
 			get_tree().paused = true
-			
+		elif body.is_class("RigidBody2D"):
+			#body.apply_impulse(position, Vector2(hspeed / 100, vspeed / 100))
+			pass
 		
 		var temp_audio = load("res://TemporaryAudioObject.tscn").instance()
 		temp_audio.set_position(self.position)

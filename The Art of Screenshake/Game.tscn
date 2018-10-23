@@ -18,7 +18,7 @@ extents = Vector2( 32, 32 )
 custom_solver_bias = 0.0
 extents = Vector2( 100, 100 )
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -54,6 +54,8 @@ position = Vector2( 640, 480 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Blocks" type="Node" parent="." index="2"]
+
+editor/display_folded = true
 
 [node name="TestBlock1" type="RigidBody2D" parent="Blocks" index="0"]
 
