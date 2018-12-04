@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/Idle0.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Player/Run0.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Player/Run1.png" type="Texture" id=4]
