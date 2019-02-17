@@ -8,8 +8,8 @@
 
 |code|type|
 |-|-|
-|`randi() % max + min`|int|
-|`randf() * max + min`|float|
+|`randi() % (max + min) + min`|int|
+|`randf() * (max + min) + min`|float|
 
 Don't forget to randomize the seed by calling `randomize()` somewhere!
 
@@ -17,9 +17,9 @@ Don't forget to randomize the seed by calling `randomize()` somewhere!
 
 `var mouse_pos = get_viewport().get_mouse_position()`
 
-## Spawn node
+## Spawn scene
 
-```python
+```
 onready var block_scene = preload("res://Block.tscn")
 
 func _ready():
@@ -27,9 +27,9 @@ func _ready():
 	get_tree().get_root().add_child(block)
 ```
 
-## KinematicBody2D Platformer Controller
+## KinematicBody2D platformer controller
 
-```python
+```
 extends KinematicBody2D
 
 const UP = Vector2(0, -1)
@@ -63,7 +63,7 @@ func _physics_process(delta):
 		motion.y = jump_height
 	
 	if variable_jump && !is_on_floor() && !Input.is_action_pressed("ui_up") && motion.y < variable_jump_height_limit:
-			motion.y = variable_jump_height_limit
+	 	motion.y = variable_jump_height_limit
 	
 	motion = move_and_slide(motion, UP)
 ```
