@@ -34,36 +34,61 @@ extends KinematicBody2D
 
 const UP = Vector2(0, -1)
 
-export var gravity = 30
-export var acceleration = 50
-export var max_speed = 400
+export var gravity = 20
+export var speed = 300
 export var jump_height = -500
 export var variable_jump = true
-export var variable_jump_height_limit = -20
+export var variable_jump_height_limit = -100
 
 var motion = Vector2()
 
 func _physics_process(delta):
 	
 	motion.y += gravity
-	if Input.is_action_pressed("ui_right") || Input.is_action_pressed("ui_left"):
-		if Input.is_action_pressed("ui_right"):
-			motion.x = min(motion.x + acceleration, max_speed)
-		if Input.is_action_pressed("ui_left"):
-			motion.x = max(motion.x - acceleration, -max_speed)
+	
+	motion.x = 0
+	if Input.is_action_pressed("ui_right"):
+		motion.x += speed
+	if Input.is_action_pressed("ui_left"):
+		motion.x -= speed
 		
-		if motion.x < 0:
-			$Sprite.flip_h = true
-		else:
-			$Sprite.flip_h = false
+	if motion.x < 0:
+		$Sprite.flip_h = true
 	else:
-		motion.x = 0
+		$Sprite.flip_h = false
 	
 	if is_on_floor() && Input.is_action_just_pressed("ui_up"):
 		motion.y = jump_height
 	
 	if variable_jump && !is_on_floor() && !Input.is_action_pressed("ui_up") && motion.y < variable_jump_height_limit:
 	 	motion.y = variable_jump_height_limit
+	
+	motion = move_and_slide(motion, UP)
+```
+
+## KinematicBody2D top-down controller
+
+```
+extends KinematicBody2D
+
+const UP = Vector2(0, 0)
+
+export var speed = 300
+
+func _physics_process(delta):
+
+	var motion = Vector2()
+	
+	if Input.is_action_pressed("ui_right"):
+		motion.x += 1
+	if Input.is_action_pressed("ui_left"):
+		motion.x -= 1
+	if Input.is_action_pressed("ui_up"):
+		motion.y -= 1
+	if Input.is_action_pressed("ui_down"):
+		motion.y += 1
+	
+	motion = motion.normalized() * speed
 	
 	motion = move_and_slide(motion, UP)
 ```
