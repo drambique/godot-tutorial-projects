@@ -35,33 +35,42 @@ extends KinematicBody2D
 const UP = Vector2(0, -1)
 
 export var gravity = 20
-export var speed = 300
+export var acceleration = 30
+export var max_speed = 300
 export var jump_height = -500
-export var variable_jump = true
-export var variable_jump_height_limit = -100
+export var jump_halt_limit = -200
+export var floor_friction = 0.2 # Slow down by 20% every frame
+export var air_friction = 0.05 # Slow down by 5% every frame
 
 var motion = Vector2()
 
-func _physics_process(delta):
+func _ready():
+	pass
+
+func _physics_process(_delta):
+	
+	var key_right = Input.is_action_pressed("ui_right")
+	var key_left = Input.is_action_pressed("ui_left")
+	var key_jump = Input.is_action_pressed("ui_up")
+	var key_just_jump = Input.is_action_just_pressed("ui_up")
+	
+	if key_right && !key_left:
+		motion.x = min(motion.x + acceleration, max_speed)
+		$Sprite.flip_h = false
+	elif key_left && !key_right:
+		motion.x = max(motion.x - acceleration, -max_speed)
+		$Sprite.flip_h = true
+	elif is_on_floor():
+		motion.x = lerp(motion.x, 0, floor_friction)
+	else:
+		motion.x = lerp(motion.x, 0, air_friction)
 	
 	motion.y += gravity
 	
-	motion.x = 0
-	if Input.is_action_pressed("ui_right"):
-		motion.x += speed
-	if Input.is_action_pressed("ui_left"):
-		motion.x -= speed
-		
-	if motion.x < 0:
-		$Sprite.flip_h = true
-	else:
-		$Sprite.flip_h = false
-	
-	if is_on_floor() && Input.is_action_just_pressed("ui_up"):
+	if key_just_jump && is_on_floor():
 		motion.y = jump_height
-	
-	if variable_jump && !is_on_floor() && !Input.is_action_pressed("ui_up") && motion.y < variable_jump_height_limit:
-	 	motion.y = variable_jump_height_limit
+	elif !key_jump && motion.y < jump_halt_limit:
+		motion.y = jump_halt_limit
 	
 	motion = move_and_slide(motion, UP)
 ```
